@@ -11,6 +11,16 @@ window.Vue = require('vue');
 import Vue from 'vue';
 import App from './App.vue'
 import router from './router.js'
+import '../sass/global.less'
+
+import axios from 'axios'
+axios.defaults.baseURL = 'www.ln.cn/api/'
+Vue.prototype.$http = axios
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
+// import '../plugins/element.js'
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false
 
