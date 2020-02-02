@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// 
+// article api
+Route::get('article', 'ArticleController@index');
+Route::get('article/{article}', 'ArticleController@show');
+Route::post('article', 'ArticleController@store');
+Route::put('article/{article}', 'ArticleController@update');
+Route::delete('article/{article}', 'ArticleController@delete');
