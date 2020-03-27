@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /**
  *
  *
- * 开始了开始了，万恶的工程化
+ * 开始了开始了，万恶的大前端
  * 项目：某不知名的全栈商城，希望不是我一个人写到底吧
  * 我尽可能的考虑的完善点，尽量不在修改原数据库
  * 加油！
@@ -37,4 +37,8 @@ Route::namespace('Api')->group(function(){
     Route::post('/menus/add', 'MenusController@add');
     Route::put('/menus/update/{id}', 'MenusController@update');
     Route::delete('/menus/delete/{id}', 'MenusController@delete');
+    # 商品管理（尝试Resource资源管理）(测试成功，往后都这样，以前的暂时不变)
+    Route::resource('goods', 'GoodsController');
+    # 子菜单管理
+    Route::resource('submenu', 'SubmenuController');
 });

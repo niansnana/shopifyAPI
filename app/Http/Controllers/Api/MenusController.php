@@ -4,6 +4,7 @@
 
     use App\Http\Controllers\Controller;
     use App\Models\Menus;
+    use App\Http\Resources\Menus as MenusResource;
     use Illuminate\Http\Request;
 
     class MenusController extends Controller
@@ -17,13 +18,15 @@
                 return response()->json([
                     'status' => true,
                     'code'   => '201',
-                    'msg'    => '添加成功'
+                    'msg'    => '添加成功',
+                    'data' => new MenusResource($result)
                 ]);
             } else {
                 return response()->json([
                     'status' => false,
                     'code'   => '400',
-                    'msg'    => '请求错误'
+                    'msg'    => '请求错误',
+                    'data' => new MenusResource($result)
                 ]);
             }
         }
@@ -56,7 +59,8 @@
                 return response()->json([
                     'status' => true,
                     'code'   => '200',
-                    'msg'    => '修改成功'
+                    'msg'    => '修改成功',
+                    'data' => new MenusResource(Menus::find($id))
                 ]);
             } else {
                 return response()->json([
@@ -76,7 +80,8 @@
                     'status' => true,
                     'code'   => '200',
                     'msg'    => '查询成功',
-                    'data'   => $result
+                    'data'   => $result,
+                    'data' => $result
                 ]);
             } else {
                 return response()->json([
@@ -95,7 +100,8 @@
                     'status' => true,
                     'code'   => '200',
                     'msg'    => '查询成功',
-                    'data'   => $result
+                    'data'   => $result,
+                    'data' => new MenusResource($result)
                 ]);
             } else {
                 return response()->json([

@@ -9,5 +9,5 @@ class Goods extends Model
     // 商品表
     protected $table = 'goods';
     protected $guarded = [];
-    public $timestamps = false;
+//    public $timestamps = false;
 }

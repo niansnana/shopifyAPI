@@ -35,19 +35,20 @@
         public function add(Request $request)
         {
             $data = $request->all();
-//            return $data;
             $result = Admin::create($data);
             if ($result) {
                 return response()->json([
                     'status' => true,
                     'code' => '201',
-                    'msg'  => '添加成功'
+                    'msg'  => '添加成功',
+                    'data' => new AdminResource($result)
                 ]);
             } else {
                 return response()->json([
                     'status' => false,
                     'Code' => '400',
-                    'msg'  => '添加失败'
+                    'msg'  => '添加失败',
+                    'data' => new AdminResource($result)
                 ]);
             }
         }
@@ -61,13 +62,15 @@
                 return response()->json([
                    'status' => true,
                    'code' => '200',
-                    'msg' => '修改成功'
+                    'msg' => '修改成功',
+                   'data' => new AdminResource(Admin::find($id))
                 ]);
             }else{
                 return response()->json([
                     'status' => false,
                     'code' => '400',
-                    'msg' => '请求错误'
+                    'msg' => '请求错误',
+                    'data' => new AdminResource(Admin::find($id))
                 ]);
             }
         }
