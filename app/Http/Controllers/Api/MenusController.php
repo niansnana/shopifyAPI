@@ -80,8 +80,7 @@
                     'status' => true,
                     'code'   => '200',
                     'msg'    => '查询成功',
-                    'data'   => $result,
-                    'data' => $result
+                    'data'   => $result
                 ]);
             } else {
                 return response()->json([

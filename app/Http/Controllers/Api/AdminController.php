@@ -14,8 +14,8 @@
         {
             return response()->json([
                 'status' => true,
-                'code' => '200',
-                'msg'   => 'success',
+                'code'   => 200,
+                'msg'    => 'success',
                 'data'   => Admin::all()
             ]);
         }
@@ -25,8 +25,8 @@
         {
             return response()->json([
                 'status' => true,
-                'code' => '200',
-                'msg'   => 'success',
+                'code'   => 200,
+                'msg'    => 'success',
                 'data'   => new AdminResource(Admin::find($id))
             ]);
         }
@@ -39,18 +39,30 @@
             if ($result) {
                 return response()->json([
                     'status' => true,
-                    'code' => '201',
-                    'msg'  => '添加成功',
-                    'data' => new AdminResource($result)
+                    'code'   => 201,
+                    'msg'    => '添加成功',
+                    'data'   => new AdminResource($result)
                 ]);
             } else {
                 return response()->json([
                     'status' => false,
-                    'Code' => '400',
-                    'msg'  => '添加失败',
-                    'data' => new AdminResource($result)
+                    'Code'   => 400,
+                    'msg'    => '添加失败',
+                    'data'   => new AdminResource($result)
                 ]);
             }
+        }
+
+        // 登录验证
+        public function login(Request $request)
+        {
+$data = $request->all();
+            return response()->json([
+                'status' => true,
+                'code'   => 200,
+                'msg'    => 'success',
+                'data'   => Admin::all()
+            ]);
         }
 
         // 修改数据
@@ -58,39 +70,67 @@
         {
             $data = $request->all();
             $result = Admin::find($id)->update($data);
-            if($result){
+            if ($result) {
                 return response()->json([
-                   'status' => true,
-                   'code' => '200',
-                    'msg' => '修改成功',
-                   'data' => new AdminResource(Admin::find($id))
+                    'status' => true,
+                    'code'   => 200,
+                    'msg'    => '修改成功',
+                    'data'   => new AdminResource(Admin::find($id))
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => false,
-                    'code' => '400',
-                    'msg' => '请求错误',
-                    'data' => new AdminResource(Admin::find($id))
+                    'code'   => 400,
+                    'msg'    => '请求错误',
+                    'data'   => new AdminResource(Admin::find($id))
                 ]);
             }
         }
 
         // 删除数据
-        public function delete($id){
+        public function delete($id)
+        {
             $result = Admin::find($id)->delete();
-            if($result){
+            if ($result) {
                 return response()->json([
                     'status' => true,
-                    'code' => '204',
-                    'msg'  => '删除成功'
+                    'code'   => 204,
+                    'msg'    => '删除成功'
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => false,
-                    'code' => '400',
-                    'msg'  => '删除失败'
+                    'code'   => 400,
+                    'msg'    => '删除失败'
                 ]);
             }
         }
 
+//        public function login(Request $request){
+//            $name = Admin::select(['username'])->get();
+//            $pass = Admin::select(['password'])->get();
+//            $username = $request->input('username');
+//            $password = $request->input('password');
+//            if($username == '' || $password == ''){
+//                return response()->json([
+//                   'status' => false,
+//                    'code' => 404,
+//                    'msg' => '用户名或密码为空'
+//                ]);
+//            }elseif ($username == $name.username && $password == $pass.password){
+//                return response()->json([
+//                    'status' => true,
+//                    'code' => 200,
+//                    'msg' => '登录成功'
+//                ]);
+//            }else{
+//                return response()->json([
+//                    'status' => false,
+//                    'code' => 400,
+//                    'msg' => '用户名或密码错误',
+//                    'name' => $name,
+//                    'pass' => $pass
+//                ]);
+//            }
+//        }
     }

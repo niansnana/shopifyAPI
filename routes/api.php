@@ -29,6 +29,7 @@ Route::namespace('Api')->group(function(){
     Route::get('/admin', 'AdminController@index');# 查询全部数据
     Route::get('/admin/{id}', 'AdminController@show');# 查询某一个数据
     Route::post('/admin/add', 'AdminController@add');# 添加数据
+    Route::post('/admin/login', 'AdminController@login'); # 登录验证
     Route::put('/admin/update/{id}', 'AdminController@update');# 编辑数据
     Route::delete('/admin/delete/{id}', 'AdminController@delete');# 删除数据
     # 菜单管理

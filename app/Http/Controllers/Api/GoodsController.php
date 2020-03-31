@@ -1,7 +1,6 @@
 <?php
 
     namespace App\Http\Controllers\Api;
-
     use App\Http\Controllers\Controller;
     use App\Models\Goods;
     use App\Http\Resources\Goods as GoodsResource;
@@ -13,18 +12,18 @@
         public function index()
         {
             $result = Goods::all();
-            if($result){
+            if ($result) {
                 return response()->json([
                     'status' => true,
-                    'code' => '200',
-                    'msg' => '查询成功',
-                    'data' => $result
+                    'code'   => 200,
+                    'msg'    => '查询成功',
+                    'data'   => $result
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => false,
-                    'code' => '400',
-                    'msg' => '失败成功'
+                    'code'   => 400,
+                    'msg'    => '失败成功'
                 ]);
             }
         }
@@ -32,18 +31,18 @@
         public function show($id)
         {
             $result = Goods::find($id);
-            if($result){
+            if ($result) {
                 return response()->json([
-                   'status' => true,
-                   'code' => '201',
-                   'msg' => '查询成功',
-                   'data' => new GoodsResource($result)
+                    'status' => true,
+                    'code'   => 201,
+                    'msg'    => '查询成功',
+                    'data'   => new GoodsResource($result)
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => false,
-                    'code' => '400',
-                    'msg' => '查询失败'
+                    'code'   => 400,
+                    'msg'    => '查询失败'
                 ]);
             }
         }
@@ -52,18 +51,18 @@
         {
             $data = $request->all();
             $result = Goods::create($data);
-            if($result){
+            if ($result) {
                 return response()->json([
-                   'status' => true,
-                   'code' => '201',
-                   'msg' => '创建成功',
-                   'data' => new GoodsResource($result)
+                    'status' => true,
+                    'code'   => 201,
+                    'msg'    => '创建成功',
+                    'data'   => new GoodsResource($result)
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => false,
-                    'code' => '400',
-                    'msg' => '创建失败'
+                    'code'   => 400,
+                    'msg'    => '创建失败'
                 ]);
             }
         }
@@ -72,18 +71,18 @@
         {
             $data = $request->all();
             $result = Goods::find($id)->update($data);
-            if($result){
+            if ($result) {
                 return response()->json([
-                   'status' => true,
-                   'code' => '200',
-                   'msg' => '更新成功',
-                   'data' => new GoodsResource(Goods::find($id))
+                    'status' => true,
+                    'code'   => 200,
+                    'msg'    => '更新成功',
+                    'data'   => new GoodsResource(Goods::find($id))
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => false,
-                    'code' => '400',
-                    'msg' => '更新失败'
+                    'code'   => 400,
+                    'msg'    => '更新失败'
                 ]);
             }
         }
@@ -91,17 +90,17 @@
         public function destroy($id)
         {
             $result = Goods::find($id)->delete();
-            if($result){
+            if ($result) {
                 return response()->json([
                     'status' => true,
-                    'code' => '204',
-                    'msg' => '删除成功'
+                    'code'   => '204',
+                    'msg'    => '删除成功'
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     'status' => false,
-                    'code' => '400',
-                    'msg' => '删除失败'
+                    'code'   => '400',
+                    'msg'    => '删除失败'
                 ]);
             }
         }
